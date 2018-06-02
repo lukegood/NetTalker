@@ -10,11 +10,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 
 public class NetTalkerFrame extends JFrame {
 
@@ -29,8 +27,8 @@ public class NetTalkerFrame extends JFrame {
 				try {
 					NetTalkerFrame frame = new NetTalkerFrame();
 					frame.setVisible(true);
-					MultiTalkServer MTS = new MultiTalkServer();
-					MTS.start();
+					//MultiTalkServer MTS = new MultiTalkServer();
+					//MTS.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,50 +47,52 @@ public class NetTalkerFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lbljava = new JLabel("\u6B22\u8FCE\u4F7F\u7528Java\u804A\u5929\u5668\uFF0C\u8BF7\u9009\u62E9\u4F60\u60F3\u4F7F\u7528\u7684\u529F\u80FD");
+		JLabel lbljava = new JLabel("\u6B22\u8FCE\u4F7F\u7528Java\u804A\u5929\u5668\uFF0C\u8BF7\u9009\u62E9\u4F60\u60F3\u8981\u4F7F\u7528\u7684\u529F\u80FD");
 		
-		JButton button = new JButton("\u591A\u4EBA\u804A\u5929");
-		button.setForeground(Color.BLACK);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TalkClient tc = new TalkClient();
-				tc.start();
+		JButton btnNewButton = new JButton("\u591A\u4EBA\u804A\u5929");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
 				ManyPeopleChatFrame m = new ManyPeopleChatFrame();
 				m.setVisible(true);
 			}
 		});
 		
-		JButton button_1 = new JButton("\u4E00\u5BF9\u4E00\u804A\u5929");
+		JButton btnNewButton_1 = new JButton("\u4E00\u5BF9\u4E00\u804A\u5929");
 		
-		JButton button_2 = new JButton("\u6587\u4EF6\u4F20\u9001");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addComponent(button)
-					.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-					.addComponent(button_1)
-					.addGap(57)
-					.addComponent(button_2)
-					.addGap(31))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(82)
+		JButton btnNewButton_2 = new JButton("\u4F20\u9001\u6587\u4EF6");
+		GroupLayout groupLayout = new GroupLayout(contentPane);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(84)
 					.addComponent(lbljava)
-					.addContainerGap(102, Short.MAX_VALUE))
+					.addContainerGap(88, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addComponent(btnNewButton)
+					.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+					.addComponent(btnNewButton_1)
+					.addGap(56)
+					.addComponent(btnNewButton_2)
+					.addGap(24))
 		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(53)
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(34)
 					.addComponent(lbljava)
-					.addGap(52)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button_2)
-						.addComponent(button_1)
-						.addComponent(button))
-					.addContainerGap(108, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(61)
+							.addComponent(btnNewButton_2))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(58)
+							.addComponent(btnNewButton))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(59)
+							.addComponent(btnNewButton_1)))
+					.addContainerGap(118, Short.MAX_VALUE))
 		);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(groupLayout);
 	}
 }
