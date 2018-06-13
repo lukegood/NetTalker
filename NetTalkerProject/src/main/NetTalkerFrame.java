@@ -27,13 +27,13 @@ public class NetTalkerFrame extends JFrame {
 				try {
 					NetTalkerFrame frame = new NetTalkerFrame();
 					frame.setVisible(true);
-					//MultiTalkServer MTS = new MultiTalkServer();
-					//MTS.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		MultiTalkServer MTS = new MultiTalkServer();
+		MTS.start();
 	}
 
 	/**
@@ -54,6 +54,7 @@ public class NetTalkerFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) { 
 				ManyPeopleChatFrame m = new ManyPeopleChatFrame();
 				m.setVisible(true);
+		    	m.start();
 			}
 		});
 		
