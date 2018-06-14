@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
@@ -61,6 +62,20 @@ public class NetTalkerFrame extends JFrame {
 		JButton btnNewButton_1 = new JButton("\u4E00\u5BF9\u4E00\u804A\u5929");
 		
 		JButton btnNewButton_2 = new JButton("\u4F20\u9001\u6587\u4EF6");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SendFileFrame sff = new SendFileFrame();
+				sff.setVisible(true);
+				//sff.start();
+			}
+		});
+		
+		JButton btnNewButton_3 = new JButton("\u4E86\u89E3\u66F4\u591A\u4FE1\u606F");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "作者：\n王希\n王李光 \nwlg1996@webmail.hzau.edu.cn\nJava聊天器", "了解更多信息",  JOptionPane.INFORMATION_MESSAGE); 
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(contentPane);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -68,31 +83,31 @@ public class NetTalkerFrame extends JFrame {
 					.addGap(84)
 					.addComponent(lbljava)
 					.addContainerGap(88, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(26)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1)
-					.addGap(56)
-					.addComponent(btnNewButton_2)
-					.addGap(24))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(107, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton)
+						.addComponent(btnNewButton_2))
+					.addGap(32)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(111))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(34)
 					.addComponent(lbljava)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(61)
-							.addComponent(btnNewButton_2))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(btnNewButton))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(59)
-							.addComponent(btnNewButton_1)))
-					.addContainerGap(118, Short.MAX_VALUE))
+					.addGap(61)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_1)
+						.addComponent(btnNewButton))
+					.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_2)
+						.addComponent(btnNewButton_3))
+					.addGap(71))
 		);
 		contentPane.setLayout(groupLayout);
 	}
