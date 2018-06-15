@@ -20,10 +20,13 @@ public class ServerThread extends Thread{
          host = address.getHostAddress();
 	}
 	public void run() { //线程主体
-
+		boolean flag = false;
+		boolean flag1 =false;
         PrintWriter pw=null;
 		try{
 			String line;
+			String judge;
+			
 			//由Socket对象得到输入流，并构造相应的BufferedReader对象
 			BufferedReader is=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			//由Socket对象得到输出流，并构造PrintWriter对象
@@ -31,11 +34,26 @@ public class ServerThread extends Thread{
 			//由系统标准输入设备构造BufferedReader对象
 			pw = new PrintWriter(os,true);
 			addOut(pw);
-		
-			sendMessageToAll(host+"编号"+clientnum+"上线了");
-			
+//		    while((judge = is.readLine())!=null) {
+//		    	if(judge == "password:tiaf") {
+//		    		flag =true;
+//		    	}
+//		    }
 			while((line = is.readLine())!=null){//如果该字符串为 "bye"，则停止循环
-				sendMessageToAll(host+"编号"+clientnum+"说:"+line);}
+				if(line.equals("password:tiaf")) {
+		    		flag =true;
+		    		continue;
+		    	}
+				if(!flag1) {
+					sendMessageToAll("用户"+clientnum+"进入了");
+					flag1 = true;
+				}
+				if(!flag) {
+					sendMessageToAll("用户"+clientnum+"说:"+line);
+				}else {
+					sendFileToAll(line);
+				}
+				}
 		}catch(Exception e){
 			System.out.println("Error:"+e);//出错，打印出错信息
 		}finally{
@@ -46,7 +64,10 @@ public class ServerThread extends Thread{
             removeOut(pw);
              
             //广播该用户下线
-            sendMessageToAll(host+"编号"+clientnum+"下线了");
+            if(!flag) {
+            	sendMessageToAll("用户"+clientnum+"离开了");
+            }
+            
             if(socket != null){
                 try {
                     socket.close();
@@ -63,6 +84,16 @@ public class ServerThread extends Thread{
     	MultiTalkServer.allOutput.remove(pw);
     }
     private synchronized void sendMessageToAll(String m){
+		for( Socket pw : MultiTalkServer.allSockets){
+			  try {
+				new PrintWriter (pw.getOutputStream(),true).println(m);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+    }
+    private synchronized void sendFileToAll(String m){
 		for( Socket pw : MultiTalkServer.allSockets){
 			  try {
 				new PrintWriter (pw.getOutputStream(),true).println(m);

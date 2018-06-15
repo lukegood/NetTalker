@@ -23,7 +23,7 @@ public class NetTalkerFrame extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable(    ) {
 			public void run() {
 				try {
 					NetTalkerFrame frame = new NetTalkerFrame();
@@ -50,7 +50,7 @@ public class NetTalkerFrame extends JFrame {
 		
 		JLabel lbljava = new JLabel("\u6B22\u8FCE\u4F7F\u7528Java\u804A\u5929\u5668\uFF0C\u8BF7\u9009\u62E9\u4F60\u60F3\u8981\u4F7F\u7528\u7684\u529F\u80FD");
 		
-		JButton btnNewButton = new JButton("\u591A\u4EBA\u804A\u5929");
+		JButton btnNewButton = new JButton("\u5F00\u59CB\u804A\u5929");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 				ManyPeopleChatFrame m = new ManyPeopleChatFrame();
@@ -58,8 +58,6 @@ public class NetTalkerFrame extends JFrame {
 		    	m.start();
 			}
 		});
-		
-		JButton btnNewButton_1 = new JButton("\u4E00\u5BF9\u4E00\u804A\u5929");
 		
 		JButton btnNewButton_2 = new JButton("\u4F20\u9001\u6587\u4EF6");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -73,41 +71,36 @@ public class NetTalkerFrame extends JFrame {
 		JButton btnNewButton_3 = new JButton("\u4E86\u89E3\u66F4\u591A\u4FE1\u606F");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "作者：\n王希\n王李光 \nwlg1996@webmail.hzau.edu.cn\nJava聊天器", "了解更多信息",  JOptionPane.INFORMATION_MESSAGE); 
+				JOptionPane.showMessageDialog(null, "作者：\n王希\n940259214@qq.com\n王李光 \nwlg1996@webmail.hzau.edu.cn\nJava聊天器", "了解更多信息",  JOptionPane.INFORMATION_MESSAGE); 
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(contentPane);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(84)
 					.addComponent(lbljava)
 					.addContainerGap(88, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(107, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_2))
-					.addGap(32)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(111))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(34)
+					.addComponent(btnNewButton)
+					.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+					.addComponent(btnNewButton_2)
+					.addGap(38)
+					.addComponent(btnNewButton_3)
+					.addGap(29))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(34)
 					.addComponent(lbljava)
-					.addGap(61)
+					.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton))
-					.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_2)
-						.addComponent(btnNewButton_3))
-					.addGap(71))
+						.addComponent(btnNewButton)
+						.addComponent(btnNewButton_3)
+						.addComponent(btnNewButton_2))
+					.addGap(128))
 		);
 		contentPane.setLayout(groupLayout);
 	}

@@ -34,10 +34,5 @@ public class MultiTalkServer{
 			}
 		    clientnum++; //增加客户计数
 		}
-		//serversocket.close(); //关闭ServerSocket
 	}  
-	//public static void main(String[] args) throws IOException {
-		//MultiTalkServer MTS = new MultiTalkServer();
-		//MTS.start();
-	//}
 }

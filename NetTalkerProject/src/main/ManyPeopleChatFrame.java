@@ -12,10 +12,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 //import main.TalkClient.GetServerMessage;
@@ -36,6 +39,7 @@ public class ManyPeopleChatFrame extends JFrame {
     private static Socket socket;
 	private Scanner sin;
 	private static Scanner choice;
+	private JScrollPane js;
 	public static char ch;
 	File file;
 	JTextField textField;
@@ -43,6 +47,7 @@ public class ManyPeopleChatFrame extends JFrame {
 	JButton button_1;
 	JLabel label;
 	private JButton button;
+	private String time;
 	public void start() {
 
 		try{
@@ -71,28 +76,6 @@ public class ManyPeopleChatFrame extends JFrame {
 			System.out.println("Error"+e); //出错，则打印出错信息
 		}
 	}
-//	public static void main(String args[]) {
-//        TalkClient tc = new TalkClient();
-//      /*  System.out.println("Choose the operation that you want:\n"
-//        		+ "1.Send message to All the Clients\n"
-//        		+ "2.Send message to the appointed Client\n"
-//        		+ "3.Send Files to the appointed Client\n");
-//        
-//     /*   choice = new Scanner(System.in);
-//        ch = choice.nextLine().charAt(0);
-//        switch (ch) {
-//        case '1':
-//        	tc.start();
-//        	break;
-//        case '2':
-//        	
-//        	break;
-//        case '3':
-//        	break;
-//        }*/
-//        tc.start();
-//	   
-//	}
     private class GetServerMessage implements Runnable{
         public void run() {
             try {
@@ -102,7 +85,9 @@ public class ManyPeopleChatFrame extends JFrame {
             	  BufferedReader is=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                   String message = null;
                   while((message = is.readLine()) != null){
-                	  textArea_1.append(message);
+                	  time = new SimpleDateFormat("h:m:s").format(new Date());
+                	  textArea_1.append(time+"\r\n");
+                	  textArea_1.append(message+"\r\n");
                   }
                } catch (Exception e) {
                   e.printStackTrace();
@@ -125,9 +110,6 @@ public class ManyPeopleChatFrame extends JFrame {
 			}
 		});
 	}
-//    private void setTalkClient(TalkClient tc) {
-//    	mtc = tc;
-//    }
 	/**
 	 * Create the frame.
 	 */
@@ -144,9 +126,14 @@ public class ManyPeopleChatFrame extends JFrame {
 		button_1 = new JButton("\u53D1\u8A00");
 		
 		textArea_1 = new JTextArea();
+		js=new JScrollPane(textArea_1);
+		js.setHorizontalScrollBarPolicy(
+		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		js.setVerticalScrollBarPolicy(
+		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);//设置滚动条
 		textArea_1.setLineWrap(true);        //激活自动换行功能 
 		textArea_1.setWrapStyleWord(true);  // 激活断行不断字功能
-		textArea_1.append("正在尝试连接目标服务端...");
+		textArea_1.append("客户端与服务端连接中，请等待...\n\r");
 				//mtcf.lblNewLabel.setT
 				//向本机的6666端口发出客户请求
 				try {
@@ -160,7 +147,7 @@ public class ManyPeopleChatFrame extends JFrame {
 					e.printStackTrace();
 				}
 				finally {
-					textArea_1.append("与目标服务端连接成功!");
+					textArea_1.append("客户端与服务端连接成功!\n\r");
 				}
 				
 		

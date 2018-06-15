@@ -104,7 +104,7 @@ public class SendFileFrame extends JFrame {
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);        //激活自动换行功能 
 		textArea.setWrapStyleWord(true);  // 激活断行不断字功能
-		textArea.append("正在尝试连接目标服务端...");
+		textArea.append("连接服务端...\n\r");
 		//mtcf.lblNewLabel.setT
 		//向本机的6666端口发出客户请求
 		try {
@@ -118,7 +118,7 @@ public class SendFileFrame extends JFrame {
 			e.printStackTrace();
 		}
 		finally {
-			textArea.append("与目标服务端连接成功!");
+			textArea.append("连接成功!\n\r");
 		}
 		
 		JButton button = new JButton("\u9009\u62E9\u6587\u4EF6");
@@ -130,11 +130,13 @@ public class SendFileFrame extends JFrame {
 		        jfc.showDialog(new JLabel(), "我要发送此文件");  
 		        File file=jfc.getSelectedFile();  
 		        if(file.isFile()){  
-		            textArea.append("准备发送的文件:"+file.getAbsolutePath());  
+		            textArea.append("准备发送的文件:"+file.getAbsolutePath()+"\n\r");  
 		        }  
 		        GetServerMessage GSM = new GetServerMessage();
 		        new Thread(GSM).start();
 		        PrintWriter os=new PrintWriter(socket.getOutputStream(),true);
+		        os.println("password:tiaf");
+		        os.flush();
 		        FileReader fis = new FileReader(file);
 		        BufferedReader rf = new BufferedReader(fis);
                 String readline;
@@ -145,7 +147,7 @@ public class SendFileFrame extends JFrame {
                    }
                 GetServerMessage GSM1 = new GetServerMessage();
     	        new Thread(GSM1).start();
-    	        textArea.append("发送完成，感谢使用！");
+    	        textArea.append("发送完成，感谢使用！\n\r");
 			}catch(Exception e1) {
 				System.out.println("Error"+e1); //出错，则打印出错信息
 			} 
